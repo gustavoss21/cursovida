@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Contato {% endblock %}
+{% block conteiner %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/contato.css' %}" media="screen">
+{% endblock %}
+<form class="row g-3 needs-validation" method="post" name="form" style="width: 60%; margin:auto; padding-bottom: 10%;"
+  novalidate>
+  {% csrf_token %}
+  <h2 style="text-align: center;"> mande sua mensagem</h2>
+  <div>
+    <label for="validationCustom01" class="form-label">Nome</label>
+    <input placeholder="Ex: Lindomar" type="text" name="nome" class="form-control" id="validationCustom01" required>
+    <div class="invalid-feedback">
+      O campo nome é obrigatório!
+    </div>
+  </div>
+
+  <div>
+    <label for="inputEmail4" class="form-label">E-mail</label>
+    <input type="email" class="form-control" placeholder="Ex: exemploemail@gmail.com" name="email" id="inputEmail4"
+      required>
+    <div class="invalid-feedback">
+      coloque um E-mail válido!
+    </div>
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom04" class="form-label">Assunto</label>
+    <select class="form-select" id="validationCustom04" name="assunto" required>
+      <option selected disabled value="">...</option>
+      <option>reclamação</option>
+      <option>dúvida</option>
+      <option>contratação</option>
+      <option>outros...</option>
+    </select>
+    <div class="invalid-feedback">
+      Escolha uma opção!
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="validationTextarea" class="form-label">Mensagem</label>
+    <textarea class="form-control" id="validationTextarea" name="mensagem"
+      placeholder="Rescreva a mensagem de forma clara e detalhada" required></textarea>
+    <div class="invalid-feedback">
+      Escreva sua mensagem!
+    </div>
+  </div>
+
+
+
+  <button type="submit" class="button" style="margin: 25px auto;
+    width: 74px;">Enviar</button>
+
+</form>
+{% endblock %}

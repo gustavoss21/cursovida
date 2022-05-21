@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pagina Inicial{% endblock%}
+{% block conteiner %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/pagina-inicial.css' %}" media="screen" type="text/css">
+{% endblock %}
+{% include 'parciais_pagina_inicial/categorias.html' %}
+
+{% include 'parciais_pagina_inicial/recomendacoes.html' %}
+{% if not user.is_anonymous %}
+
+{% include 'parciais_pagina_inicial/seus_cursos.html' %}
+{% endif %}
+
+<!--   sec-335csec- -->
+{% for categoria in categorias %}
+{% include 'parciais_pagina_inicial/cursos.html' %}
+{% endfor %}
+{% endblock %}

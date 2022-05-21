@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Produto{% endblock%}
+{% block producao %}{% endblock%}
+{% block conteiner %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/produto.css' %}" media="screen">
+{% endblock%}
+<div class="row g-0 bg-light position-relative">
+  <div class="col-md-6 mb-md-0 p-md-4 style-img">
+    <img src="{{ produto.imagem.url }}" class="w-100" alt="...">
+  </div>
+  <div class="col-md-6 p-4 ps-md-0">
+
+    <h5 class="mt-0"><span style="padding-right: 5px; font-weight: bolder;">Curso:</span>{{ produto.nome }}</h5>
+    <p><span style="padding-right: 5px; font-weight: bolder;">vendedor:</span>{{ produto.vendedo }}</p>
+    <p style="font-size:20px; color:rgb(18, 154, 233)"><span
+        style="padding-right: 5px; font-weight: bolder;">preço:</span>{{ produto.preco}}</p>
+    <p><span style="padding-right: 5px; font-weight: bolder;">categoria:</span><a
+        href="{% url 'categoria' produto.categoria.id %}">{{ produto.categoria}}</a></p>
+    <p><span style="padding-right: 5px; font-weight: bolder;">detalhe:</span>{{ produto.descricao_curta }}</p>
+
+    <form action="{% url 'adicionar-carrinho' %}">
+      <select hidden name="pid">
+        <option value="{{ produto.id }}"></option>
+      </select>
+
+
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="Second group">
+          <button type="submit" class="button">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </form>
+    <form action="{% url 'meus-cursos-adicionar' %}">
+      <select hidden name="pid">
+        <option value="{{ produto.id }}"></option>
+      </select>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button type="submit" class="button">Comprar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item" style="margin-bottom: 15%;">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        aria-expanded="true" aria-controls="collapseOne">
+        Desc​rição
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <p style="word-wrap:  normal">{{produto.descricao_longa}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

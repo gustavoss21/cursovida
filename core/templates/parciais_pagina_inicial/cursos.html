@@ -1,0 +1,96 @@
+{% load static %}
+{% load gtfiltes %}
+<section class="u-align-center u-clearfix u-section-4" id="sec-33{{ categoria.pk }}c">
+    <div class="u-container-style u-custom-color-3 u-expanded-width u-group u-group-1 barra"
+        data-href="{% url 'categoria' categoria.id %}">
+        <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-container-layout-1">
+            <h2 class="u-subtitle u-text u-text-default u-text-white u-text-1">
+                {{ categoria.categoria }}
+        </div>
+    </div>
+    <h4 style="padding-top: 30px;"> {{ categoria.descricao }}</h4>
+    <div class="u-expanded-width u-layout-horizontal u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+
+            {% for produto in produtos %}
+            {% if produto.categoria == categoria %}
+            <div class="u-container-style u-list-item u-repeater-item item-fumaca">
+                <div class="u-container-layout u-similar-container u-container-layout-2">
+                    <img class="max-image" data-href="{% url 'detalhe' produto.id %}"
+                        src="{{ produto.imagem.thub.url }}">
+
+                    {% if produto.id in request.session.favoritos.keys|ints %}
+
+                    <form action="{% url 'apagar-favoritos' %}">
+                        <select hidden name="produto-id">
+                            <option value="{{ produto.id }}"></option>
+                        </select>
+                        <button type="submit" style="background-color: initial;border: none; box-shadow: none;">
+
+                            <i class="material-icons"
+                                style="font-size:26px; position: relative; bottom: 114px; left: 137px; color: red;">favorite</i>
+                        </button>
+                    </form>
+                    {% else%}
+                    <form action="{% url 'adicionar-favoritos' %}">
+                        <select hidden name="produto-id">
+                            <option value="{{ produto.id }}"></option>
+                        </select>
+                        <button type="submit" style="background-color: initial;border: none; box-shadow: none;">
+
+                            <i class="material-icons"
+                                style="font-size:26px; position: relative; bottom: 114px; left: 137px; color: red;">favorite_border</i>
+                        </button>
+                    </form>
+                    {% endif %}
+                    <p class=" u-small-text u-text u-text-variant u-text-2">
+                        <a data-href="{% url 'detalhe' produto.id %}">{{ produto.nome }}</a>
+                    </p>
+                    <p class="u-small-text u-text u-text-palette-2-base u-text-variant u-text-3">
+                        R$ {{ produto.preco }}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+
+
+        </div>
+        <a class="u-absolute-vcenter-lg u-absolute-vcenter-xl u-gallery-nav u-gallery-nav-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-1"
+            href="#" role="button">
+            <span aria-hidden="true">
+                <svg viewBox="0 0 451.847 451.847">
+                    <path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path>
+                </svg>
+            </span>
+            <span class="sr-only">
+                <svg viewBox="0 0 451.847 451.847">
+                    <path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path>
+                </svg>
+            </span>
+        </a>
+        <a class="u-gallery-nav u-gallery-nav-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-2"
+            href="#" role="button">
+            <span aria-hidden="true">
+                <svg viewBox="0 0 451.846 451.847">
+                    <path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path>
+                </svg>
+            </span>
+            <span class="sr-only">
+                <svg viewBox="0 0 451.846 451.847">
+                    <path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+                L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+                c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z">
+                    </path>
+                </svg>
+            </span>
+        </a>
+    </div>
+</section>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+<html style="font-size: 16px;">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="​suas recomendações">
+  <meta name="description" content="">
+  <meta name="page_type" content="np-template-header-footer-from-plugin">
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <!--      css bootstrap-->
+  <!-- CSS only -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="generator" content="Nicepage 4.8.2, nicepage.com">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  {% block link %}{% endblock %}
+  <!--    <link rel="stylesheet" href="{% static 'css/pagina-inicial.css' %}" media="screen" xmlns="http://www.w3.org/1999/html">-->
+  <!-- <style>
+    .teste {
+      padding: 0px 50px;
+    }
+
+ 
+
+   
+
+    .button {
+      padding: 10px 20px;
+      margin: 0px 20px;
+      background-color: #05516b;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 1px 3px 10px #0000009c;
+    }
+
+
+    button:hover {
+      box-shadow: 2px 9px 10px #00000099;
+      border: 2px solid #04384a;
+    }
+  </style> -->
+  <style>
+    @media (max-width: 767px) {
+      .u-header .u-group-1 {
+        width: 135px;
+        min-height: 42px;
+        margin-left: -18px;
+      }
+
+      .padding-nav {
+        padding: 0px 0px 0px 14px;
+      }
+
+      .padding-nav a {
+        margin-bottom: 5px;
+      }
+
+      .row .style-img {
+        flex-shrink: 0;
+        width: 60%;
+        max-width: 100%;
+        margin: auto;
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+
+      }
+    }
+
+    @media (max-width: 991px) {
+      nav li {
+        padding: 20 0px;
+      }
+
+      /* curso vida letra */
+      .u-header .u-text-1 {
+        width: auto;
+        margin-top: -27px;
+        margin-right: 0px;
+        margin-left: 46px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (min-width: 992px) {
+      nav li {
+        padding: 0px 10px;
+      }
+
+      .u-header .u-text-1 {
+        width: auto;
+        margin-top: -27px;
+        margin-right: 0px;
+        margin-left: 35px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 1199px) {
+      .u-header .u-group-1 {
+        width: 171px;
+        margin-left: -20px;
+        height: auto;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+      }
+    }
+
+    .nav-style {
+      color: white;
+    }
+
+
+
+    .button {
+      padding: 5px 12px;
+      margin: 0px 3px;
+      background-color: #0a9bcc8a;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 1px 3px 10px #0000009c;
+      font-size: 12px;
+    }
+
+
+    button:hover {
+      box-shadow: 2px 9px 10px #00000099;
+      border: 2px solid #04384a58;
+    }
+
+    .edit-link {
+      color: white;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    .teste {
+      color: black;
+    }
+
+    nav a:hover {
+      background-color: rgb(71 120 159);
+    }
+
+    .maxwid {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .barra {
+      box-shadow: 8px 6px 11px 0px #0c0f2a87;
+    }
+
+    main .barra:hover {
+      box-shadow: 2px 9px 10px #00000099;
+      border: 2px solid #04384a;
+    }
+
+    .item-fumaca {
+      box-shadow: 2px 42px 9px #00000029;
+    }
+
+    .item-fumaca:hover {
+      box-shadow: 2px 9px 10px #00000028;
+      border: 2px solid #04384a1b;
+    }
+
+    .max-image {
+      max-width: 182px;
+      margin-left: -5px;
+    }
+
+
+    .espaco-carrinho {
+      margin-bottom: 300px;
+    }
+
+    .categoria-fumaca {
+      box-shadow: inset 5px 4px 11px 0px #d1c5c5;
+    }
+
+    .parag-list {
+      display: inline;
+      font-weight: bolder;
+      margin: 0px auto 0px 77px;
+    }
+
+    .categoria-list {
+      font-size: 30px;
+    font-family: auto;
+    font-weight: bolder;
+    border: 3px solid #2c617a7a;
+    text-align: center;
+    background-color: #0092ff24;
+    box-shadow: 3px 4px 8px 0px #1f327f69;
+    }
+
+    .items-list {
+      box-shadow: 1px 3px 10px #05516b5e;
+    }
+
+    /* curso vida simbolo */
+
+
+
+
+    l .u-header .u-container-layout-1 {
+      padding: initial;
+    }
+
+    @media (min-width: 768px) {
+      .col-md-6 {
+        flex: 0 0 auto;
+        width: 30%;
+      }
+    }
+
+    .material-icons:visited {
+      color: red;
+    }
+
+    .material-icons:hover {}
+  </style>
+  <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}
+</script>
+</head>
+
+<body class="u-body u-xl-mode">
+  {% load django_bootstrap5 %}
+  {% bootstrap_javascript %}
+  {% include 'parciais/_header.html' %}
+  <main class="maxwid">
+    {% include 'parciais/_messages.html' %}
+    {% block conteiner %} {% endblock %}
+  </main>
+  {% include 'parciais/footer.html' %}
+  <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+  </script>
+  <script>
+    function hearts() {
+      var heart = document.form.svg.body;
+      var teste = document.body;
+    };
+  </script>
+</body>
+
+</html>

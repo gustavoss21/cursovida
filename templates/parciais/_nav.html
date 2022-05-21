@@ -1,0 +1,180 @@
+{% load gtfiltes %}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <div class="u-container-style u-group u-group-1" data-href="{% url 'pagina-inicial' %}">
+            <div class="u-container-layout u-container-layout-1" data-href="{% url 'pagina-inicial'%}">
+                <div class="u-border-3 u-border-white u-shape u-shape-right u-shape-1"
+                    style="width: 48px; height: 41px; margin: -5px auto 0 27px;"></div>
+                <p class="u-small-text u-text u-text-body-alt-color u-text-variant u-text-1">
+                    Curso vida
+                </p>
+            </div>
+        </div>
+        <button class="navbar-toggler button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse padding-nav" style="margin-left: 10px;" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 edit-link">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+
+                    <a class="edit-link" href="{% url 'pagina-inicial' %}#sec-44b5" data-page-id="9781384"
+                        target="_blank" style="color: rgb(255, 255, 255);">
+                        meus cursos
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="edit-link" style="color: rgb(255, 255, 255);" disabled data-page-id="9781384"
+                        target="_blank">
+                        meus cursos
+                    </a>
+
+                </li>
+                {% endif%}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="edit-link" href="{% url 'carrinho' %}" style="color: rgb(255, 255, 255);">carrinho<span
+                            class="badge">{{request.session.carrinho|carrinho_total}}</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="edit-link" style="color: rgb(255, 255, 255);">
+                        carrinho
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if user.is_anonymous %}
+                <li class="nav-item">
+                    <a class="edit-link" style="color: rgb(255, 255, 255);" href="{% url 'login' %}">login</a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item dropdown">
+                    <a class="edit-link" href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="padding: initial;color: rgb(255, 255, 255);">
+                        Usuário
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 12px;">
+                        <li>
+                            <a class="edit-link" style="color: rgb(0, 0, 0);" href="{% url 'contato' %}">
+                                contate-nos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="edit-link" style="color: rgb(0, 0, 0);" href="{% url 'favoritos' %}"
+                                target="_blank">
+                                favoritos
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% if not user.is_anonymous %}
+                        <li class="nav-item">
+                            <a class="edit-link" style="color: rgb(0, 0, 0);" href="{% url 'logout' %}">logout</a>
+                        </li>
+                        {% endif%}
+                    </ul>
+                </li>
+
+            </ul>
+            <form class="d-flex" action="{% url 'pesquisar' %}">
+                <input class="form-control me-2" name="pequisar" type="search" placeholder="Pequisar"
+                    aria-label="Search" style="min-width:
+                    300px;">
+                <button class="button" type="submit" style="margin: auto;">Pequisar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!-- <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+    <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+        <a class="u-button-style u-custom-active-color u-custom-hover-color u-custom-left-right-menu-spacing
+       u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing
+        u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-text-white" href="#"
+            style="font-size: calc(1em + 12px); padding: 6px 8px;">
+            <svg class="u-svg-link" viewBox="0 0 24 24">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+            </svg>
+            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+                xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <rect y="1" width="16" height="2"></rect>
+                    <rect y="7" width="16" height="2"></rect>
+                    <rect y="13" width="16" height="2"></rect>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <div class="u-custom-menu u-nav-container">
+        <ul class="u-nav u-unstyled u-nav-1">
+            {% if user.is_authenticated %}
+            <li class="u-nav-item">
+
+                <a class="u-active-palette-1-base u-button-style u-nav-link u-text-active-white
+                       u-text-body-alt-color u-text-hover-palette-2-base" href="{% url 'pagina-inicial' %}#sec-44b5"
+                    data-page-id="9781384" target="_blank" style="padding: 10px 20px;">meus cursos</a>
+            </li>
+            {% else %}
+            <li class="u-nav-item">
+                <a disabled class="u-active-palette-1-base u-button-style u-nav-link u-text-active-white
+                       u-text-body-alt-color u-text-hover-palette-2-base" data-page-id="9781384" target="_blank"
+                    style="padding: 10px 20px;">meus cursos</a>
+
+            </li>
+            {% endif%}
+
+            {% if user.is_authenticated %}
+            <li class="u-nav-item">
+                <a class="u-active-palette-1-base u-button-style u-nav-link u-text-active-white
+                 u-text-body-alt-color u-text-hover-palette-2-base" href="{% url 'carrinho' %}"
+                    style="padding: 10px 20px;">carrinho<span class="badge"
+                        style="margin-left: 5px;background-color: #27394a;">{{request.session.carrinho|carrinho_total}}</span></a>
+            </li>
+            {% else %}
+            <li class="u-nav-item">
+                <a class="u-active-palette-1-base u-button-style u-nav-link u-text-active-white u-text-body-alt-color u-text-hover-palette-2-base"
+                    style="padding: 10px 20px;">carrinho
+                </a>
+            </li>
+            {% endif %}
+            <li class="u-nav-item">
+                <a class="u-active-palette-1-base u-button-style u-nav-link u-text-active-white u-text-body-alt-color u-text-hover-palette-2-base"
+                    rel="nofollow" style="padding: 10px 20px;">Usuário</a>
+                <div class="u-nav-popup">
+                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                        <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link u-white" href="{% url 'contato' %}">contate-nos</a>
+                        </li>
+                        <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link u-white" href="" target="_blank">lista
+                                de desejo</a>
+                        </li>
+                        <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link u-white" href="" target="_blank">favoritos</a>
+                        </li>
+                        <li class="u-nav-item">
+                            {% if user.is_anonymous %}
+                            <a class="u-button-style u-nav-link u-white" href="{% url 'login' %}"
+                                target="_blank">login</a>
+
+                            {% else %}
+                            <a class="u-button-style u-nav-link u-white" href="{% url 'logout' %}"
+                                target="_blank">logout</a>
+                            {% endif%}
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</nav> -->

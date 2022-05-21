@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}error 404{% endblock%}
+ {% block conteiner %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}" media="screen">
+{% endblock %}
+    <section class="u-align-center u-clearfix u-custom-color-3 u-section-1" id="sec-f575">
+      <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-xs u-sheet-1">
+        <img src="{% static 'images/12.png' %}" alt="" class="u-expanded-width-sm
+        u-expanded-width-xs u-image u-image-contain u-image-default u-image-1"
+             data-image-width="788" data-image-height="684">
+        <h1 class="u-align-center u-custom-font u-font-pt-sans u-text
+        u-text-body-alt-color u-text-1">Pagina não encontrada</h1>
+        <p class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-2">
+          A requisição da url não encontrado em nosso servidor
+        </p>
+        <div class="u-clearfix u-expanded-width-sm u-expanded-width-xs u-gutter-0 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-right u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-valign-middle u-container-layout-1">
+                  <a href="{% url 'cor:pagina-inicial' %}" data-page-id="9781384" class="u-active-white
+                   u-border-2 u-border-active-white u-border-hover-white u-border-white u-btn
+                    u-btn-round u-button-style u-hover-white u-radius-50 u-text-active-palette-4-base
+                     u-text-hover-palette-4-base u-text-palette-4-base u-white u-btn-1">pagina inical</a>
+                </div>
+              </div>
+              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm
+                 u-valign-middle-xl u-container-layout-2">
+                  <a href="mailto:hi@freedesigner.com" class="u-active-white u-border-2
+                   u-border-active-white u-border-hover-white u-border-white u-btn u-btn-round
+                    u-button-style u-hover-white u-none u-radius-50 u-text-active-palette-4-dark-2
+                     u-text-body-alt-color u-text-hover-palette-4-base u-btn-2">entrar em contato</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  {% endblock %}

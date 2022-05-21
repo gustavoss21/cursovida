@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load utilidades %}
+{% load humanize %}
+{% block title %}Carrinho{% endblock%}
+{% block conteiner %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/carrinho.css' %}" media="screen">
+{% endblock%}
+
+
+
+
+<section class="u-clearfix u-section-1" id="sec-9a84" style="min-height: 423px; margin: 50px 0px;">
+  {% if request.session.carrinho %}
+  <div style=" text-align: center;">
+
+    <h3 class="categoria-list">Seu carrinho</h1>
+  </div>
+  <div class="u-clearfix u-sheet u-sheet-1">
+
+    <div class="u-cart u-expanded-width u-cart-1">
+      <div class="u-cart-products-table u-table u-table-responsive">
+        <table class="u-table-entity">
+          <colgroup>
+            <col width="65%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+          </colgroup>
+          <thead class="u-table-header">
+            <tr style="height: 46px;">
+              <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Produto </th>
+              <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Preço </th>
+            </tr>
+          </thead>
+          {% for c in carrinho.values %}
+
+          <tbody class="u-table-body">
+
+            <tr style="height: 120px;">
+              <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                <form action="{% url 'remove-carrinho' %}">
+                  <select hidden name="produto-id">
+                    <option value="{{ c.id }}"></option>
+                  </select>
+                  <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="16"
+                      fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"
+                      data-href="{% url 'pagina-inicial' %}">
+                      <path
+                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                    </svg>
+                  </button>
+                </form>
+
+                <img class="u-cart-product-image u-image u-image-default u-product-control"
+                  src="{% get_media_prefix %}{{ c.imagem }}">
+                <h2 class="u-cart-product-title u-product-control u-text u-text-1">
+                  <a id="{{ c.nome }}" class="u-product-title-link" href="#">{{ c.nome }}</a>
+                </h2>
+              </td>
+              <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
+                <div class="u-cart-product-price u-product-control u-product-price">
+                  <div class="u-price-wrapper">
+                    <div class="u-hide-price u-old-price"></div>
+                    <div class="u-price">R${{ c.preco }}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+
+          {% endfor %}
+        </table>
+      </div>
+
+      <div class="u-cart-button-container">
+        <a href="{% url 'pagina-inicial' %}"
+          class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-btn-1">
+          <span class="u-icon">
+            <svg class="u-svg-content" viewBox="0 0 443.52 443.52" x="0px" y="0px" style="width: 1em; height: 1em;">
+              <g>
+                <g>
+                  <path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8
+                                   c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712
+                                      L143.492,221.863z">
+                  </path>
+                </g>
+              </g>
+            </svg>
+
+          </span>&nbsp;Continue comprando
+        </a>
+        <a href="#" class="u-btn u-button-style u-cart-update u-grey-5">Atualizar cartão</a>
+      </div>
+      <div class="u-cart-blocks-container">
+        <div class="u-cart-block u-indent-30">
+          <div class="u-cart-block-container u-clearfix">
+            <h5 class="u-cart-block-header u-text">Código promocional</h5>
+            <div class="u-cart-block-content u-text">
+              <div class="u-cart-form u-form">
+                <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form"
+                  source="custom" name="form">
+                  <div class="u-form-group">
+                    <label for="name-5861" class="u-form-control-hidden u-label">Cupom de desconto</label>
+                    <input type="text" placeholder="código do cupom" id="name-5861" name="cupom"
+                      class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                  </div>
+                  <div class="u-align-left u-form-group u-form-submit">
+                    <a href="#" class="u-btn u-btn-submit u-button-style">Aplicar cupom</a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                  </div>
+                  <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+                  <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors
+                    then
+                    try again.</div>
+                  <input type="hidden" value="" name="recaptchaResponse">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="u-cart-block u-cart-totals-block u-indent-30">
+          <div class="u-cart-block-container u-clearfix">
+            <h5 class="u-cart-block-header u-text">Total no carrinho</h5>
+            <div class="u-align-right u-cart-block-content u-text">
+
+              <div class="u-cart-totals-table u-table u-table-responsive">
+                <table class="u-table-entity">
+                  <colgroup>
+                    <col width="50%">
+                    <col width="50%">
+                  </colgroup>
+                  <tbody class="u-align-right u-table-body">
+                    <tr style="height: 46px;">
+                      <td
+                        class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-table-cell-19">
+                        Total
+                      </td>
+                      <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-20">
+
+                        R${{ request.session.carrinho|valor_total|intcomma }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+
+              <form action="{% url 'meus-cursos-adicionar' %}">
+                <select hidden name="pid">
+                  {% for c in carrinho.values %}
+                  <option value="{{ c.id }}"></option>
+                  {% endfor %}
+                </select>
+
+
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+                  <div class="btn-group me-2" role="group" aria-label="Second group">
+                    <button type="submit" class="button">Finalizar compra</button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  {% else%}
+  <div style=" text-align: center;">
+    <h3 class="categoria-list">Seu carrinho esta vazio!</h3>
+
+    <h5 class="espaco-carrinho" style="padding-top: 50px;">Veja suas<a href="{% url 'pagina-inicial' %}#recomendar">
+        recomendações</a> </h5>
+
+    {% endif %}
+  </div>
+</section>
+
+
+{% endblock %}
+
+(env)~$
