@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5248$&4&!mb72&xm*x3yw^_dj+*(p6)uk0jlni^!h7snhmi4az'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,15 +84,15 @@ WSGI_APPLICATION = 'cursoVida.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'mydatabase',
     }
-}'''
-DATABASES = {
-    'default': dj_database_url.config()
 }
+"""DATABASES = {
+    'default': dj_database_url.config()
+}"""
 
 
 # Password validation

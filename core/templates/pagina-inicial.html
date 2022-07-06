@@ -8,8 +8,8 @@
 {% include 'parciais_pagina_inicial/categorias.html' %}
 
 {% include 'parciais_pagina_inicial/recomendacoes.html' %}
-{% if not user.is_anonymous %}
 
+{% if not user.is_anonymous and meuscursos %}
 {% include 'parciais_pagina_inicial/seus_cursos.html' %}
 {% endif %}
 

@@ -72,9 +72,14 @@ class MeusCursos(models.Model):
     produto = models.ForeignKey(
         'produto.Produto', verbose_name='Produto', on_delete=models.CASCADE)
 
+    data = models.DateField('Data', auto_now_add=True)
+  
+
+
     class Meta:
         verbose_name = 'Meu Curso'
         verbose_name_plural = 'Meus Cursos'
 
     def __str__(self):
-        return self.produto
+        return str(self.produto)
+

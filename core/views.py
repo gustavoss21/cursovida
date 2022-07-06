@@ -17,8 +17,8 @@ class IndexView(TemplateView):
         context['produtos'] = Produto.objects.all()
         produtos = Produto.objects.all()
         context['categorias'] = Categoria.objects.all()
-        context['meus-cursos'] = MeusCursos.objects.all()
-        print(self)
+        # context['meuscursos'] = MeusCursos.objects.all()
+
         # tirar todas as categorias vazias, ou seja, as que nao estao na categoria do produto
         lista = []
         for categoria1 in context['categorias']:

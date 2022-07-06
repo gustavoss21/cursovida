@@ -151,9 +151,9 @@
 
 
               <form action="{% url 'meus-cursos-adicionar' %}">
-                <select hidden name="pid">
+                <select hidden name="pid" multiple>
                   {% for c in carrinho.values %}
-                  <option value="{{ c.id }}"></option>
+                  <option value="{{ c.nome }}" selected></option>
                   {% endfor %}
                 </select>
 

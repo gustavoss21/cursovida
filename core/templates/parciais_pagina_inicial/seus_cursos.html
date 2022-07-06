@@ -5,13 +5,15 @@
       class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-1 barra">
       <h2
         class="u-subtitle u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-white u-text-1">
-        meus cursos </h2>
+        meus cursos
+        </h2>
+
     </div>
   </div>
   <div class="u-layout-horizontal u-list u-list-1">
     <div class="u-repeater u-repeater-1">
 
-
+      {% for curso in meuscursos %}
       <div class="u-container-style u-list-item u-repeater-item u-list-item-1">
         <div class="u-container-layout u-similar-container u-container-layout-2 item-fumaca">
           <div class="u-video u-video-1">
@@ -21,10 +23,11 @@
                 frameborder="0" allowfullscreen=""></iframe>
             </div>
           </div>
-          <p class="u-small-text u-text u-text-variant u-text-2"> python do basico ao avançado</p>
+          <p class="u-small-text u-text u-text-variant u-text-2">{{curso}}</p>
 
         </div>
       </div>
+      {% endfor %}
     </div>
 
     <a class="u-gallery-nav u-gallery-nav-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-1"

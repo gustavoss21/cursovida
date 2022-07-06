@@ -1,10 +1,16 @@
+from cProfile import label
+from http.client import HTTPResponse
+from multiprocessing import get_context
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.views.generic import View, DetailView, RedirectView, TemplateView
+from django.views.generic import View, DetailView, RedirectView, TemplateView, FormView
 from django.views.generic.edit import CreateView
 from datetime import datetime, timedelta
 from django.contrib import messages
 import json
+from .form import MeusCursosForm
+from django.urls import reverse_lazy
 from .models import Produto, Categoria, MeusCursos
+import re
 from django.shortcuts import get_object_or_404
 # Create your views here.
 # recursos estáticos
@@ -29,6 +35,7 @@ class AdicionarCarrinho(View):
             return redirect('login')
 
         produto_id = self.request.GET.get('pid')
+        print(55555555,produto_id)
         if not produto_id:
             return redirect(http_referer)
         produto = get_object_or_404(Produto, id=produto_id)
@@ -60,19 +67,16 @@ class AdicionarCarrinho(View):
         return redirect(http_referer)
 
 
+
 class ApagarCarrinho(View):
     def get(self, *args, **kwargs):
         http_referer = self.request.META.get('HTTP_REFERER',
                                              reverse('pagina-inicial'))
         produto_id = self.request.GET.get('produto-id')
-        print(1111111111111, '....', produto_id)
         # del self.request.session['carrinho']
         if not produto_id:
             return redirect(http_referer)
         else:
-            ...
-            # print('12345removido',
-            #       self.request.session['carrinho'][produto_id])
             nome = self.request.session['carrinho'][produto_id]['nome']
             messages.success(
                 self.request, f'A remoção do {nome} foi bem sucedido!')
@@ -94,5 +98,59 @@ class CarrinhoView(TemplateView):
 
 class MeusCursosAdicionar(CreateView):
     model = MeusCursos
-    template_name = 'pagina-inicial.html'
-    fields = ['produto']
+    template_name = 'detalhe.html'
+    form_class = MeusCursosForm
+    success_url = reverse_lazy('pagina-inicial')
+    
+
+    def get_context_data(self,*args, **kwargs):
+        context = super().get_context_data(*args,**kwargs)
+
+        http_referer = self.request.META.get('HTTP_REFERER',
+                                             reverse('pagina-inicial'))
+        produto_id = self.request.GET.get('pid')
+        produto_or_carrinho = re.search(r'produto',produto_id)
+        if not produto_id:
+            return redirect(http_referer)
+        if not produto_or_carrinho == None:
+            produto_id = produto_id[:produto_or_carrinho.span()[0]-1]
+            produto = get_object_or_404(Produto, nome=produto_id)
+            nome = produto.nome
+            preco = produto.preco
+            vendedor = produto.vendedo
+            id = produto.id
+            imagem = produto.imagem
+            imagem = imagem.name
+            self.request.session['produto'] = {'nome': nome,
+                                                            'preco': f'{preco}',
+                                                            'vendedor': f'{vendedor}',
+                                                            'imagem': imagem,
+                                                            'id': id,
+                                                            }
+
+            context['produto'] = self.request.session.get('produto')
+            context['produtos'] = []
+
+            return context
+        else:
+            
+            
+            context['produtos'] = self.request.session.get('carrinho')
+            context['produto'] = {}
+            print('carrinho',self.request.session.get('carrinho'))
+           
+            return context
+    
+    def post(self,request,*args,**kwargs):
+        print(0,request,1,*args,2,**kwargs)
+        print(22222,self.request.POST)
+        return super().post(request,*args,**kwargs)
+
+
+
+
+
+
+    
+
+
