@@ -1,0 +1,76 @@
+version: "3.4"
+
+services:
+  nginx:
+    build:
+      dockerfile: ./docker/nginx.dockerfile
+      context:  .
+    image: gustavo/nginx_cursovida:v1
+    container_name: nginx
+    ports:
+     -  "8080:80"
+    networks:
+     -  nwcursovida
+    depends_on:
+     -  cursovida1
+     -  cursovida2
+     -  cursovida3
+
+  pgcursovida:
+    build:
+      dockerfile:  ./docker/pgcursovida.dockerfile
+      context: .
+    image: gustavo/pgcursovida:v1
+    container_name: pgcursovida
+    ports:
+      - "5432"
+    networks:
+      - nwcursovida
+    volumes:
+      - pgdata:/var/lib/postgres/data/
+    
+  cursovida1:
+    build: 
+      dockerfile: ./docker/cursovida.dockerfile
+      context: .
+    image: gustavo/cursovida:v1
+    container_name: cursovida1
+    ports:
+      - "8000"
+    networks:
+      - nwcursovida
+    depends_on:
+      - pgcursovida
+  
+  cursovida2:
+    build: 
+      dockerfile: ./docker/cursovida.dockerfile
+      context: .
+    image: gustavo/cursovida:v1
+    container_name: cursovida2
+    ports:
+      - "8000"
+    networks:
+      - nwcursovida
+    depends_on:
+      - pgcursovida
+  
+  cursovida3:
+    build: 
+      dockerfile: ./docker/cursovida.dockerfile
+      context: .
+    image: gustavo/cursovida:v1
+    container_name: cursovida3
+    ports:
+      - "8000"
+    networks:
+      - nwcursovida
+    depends_on:
+      - pgcursovida
+
+networks:
+  nwcursovida:
+   driver: bridge
+
+volumes:
+  pgdata:
