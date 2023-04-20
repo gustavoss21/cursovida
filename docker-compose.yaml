@@ -27,7 +27,7 @@ services:
     networks:
       - nwcursovida
     volumes:
-      - pgdata:/var/lib/postgres/data/
+      - pgdata:/var/lib/postgresql/data/
     
   cursovida1:
     build: 
