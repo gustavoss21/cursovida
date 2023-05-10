@@ -14,6 +14,9 @@ from pathlib import Path
 from re import T
 import dj_database_url
 from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5248$&4&!mb72&xm*x3yw^_dj+*(p6)uk0jlni^!h7snhmi4az'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,13 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'produto.apps.ProdutoConfig',
-    'contato',
-    'core',
-    'lista',
     'django.contrib.humanize',
     'django_bootstrap5',
-
-
+    'core',
+    'contato',
+    'lista',
 ]
 
 MIDDLEWARE = [
@@ -83,22 +84,24 @@ WSGI_APPLICATION = 'cursoVida.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('ENGINE'),
+#         'NAME': os.getenv('NAME'),
+#         'USER': os.getenv('USER'),
+#         'PASSWORD': os.getenv('PASSWORD'),
+#         'HOST': os.getenv('HOST'),
+#         'PORT': os.getenv('PORT'),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bd_cursovida',
-        'USER': 'gustavoroot',
-        'PASSWORD': '991465393gs',
-        'HOST': 'pgcursovida',
-        'PORT': '5432',
-    }
-}
-"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'mydatabase',
     }
-}"""
+}
 """DATABASES = {
     'default': dj_database_url.config()
 }"""

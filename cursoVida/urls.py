@@ -23,8 +23,9 @@ from django.contrib import messages
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contato/', include('contato.urls')),
-    path('', include('core.urls')),
     path('produto/', include('produto.urls')),
     path('lista/', include('lista.urls')),
     path('contas/', include('django.contrib.auth.urls'), name='login'),
+    path('', include('core.urls'),name='core'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
